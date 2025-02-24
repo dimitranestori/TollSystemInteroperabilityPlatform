@@ -1,0 +1,75 @@
+{
+  "info": {
+    "name": "Toll Management API",
+    "description": "API for toll station management, user authentication, and analysis.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "username", "value": "", "type": "text" },
+                { "key": "password", "value": "", "type": "text" }
+              ]
+            },
+            "url": { "raw": "http://localhost:5000/login", "host": ["http://localhost:5000"], "path": ["login"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Controls",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": { "method": "GET", "url": "http://localhost:5000/healthcheck" }
+        },
+        {
+          "name": "Reset Stations",
+          "request": { "method": "POST", "url": "http://localhost:5000/resetstations" }
+        },
+        {
+          "name": "Reset Passes",
+          "request": { "method": "POST", "url": "http://localhost:5000/resetpasses" }
+        }
+      ]
+    },
+    {
+      "name": "Analysis",
+      "item": [
+        {
+          "name": "Toll Station Passes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/tollStationPasses/:tollStationID/:date_from/:date_to",
+              "host": ["http://localhost:5000"],
+              "path": ["tollStationPasses", ":tollStationID", ":date_from", ":date_to"]
+            }
+          }
+        },
+        {
+          "name": "Pass Analysis",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/passAnalysis/:stationOpID/:tagOpID/:date_from/:date_to",
+              "host": ["http://localhost:5000"],
+              "path": ["passAnalysis", ":stationOpID", ":tagOpID", ":date_from", ":date_to"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

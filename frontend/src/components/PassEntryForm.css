@@ -1,0 +1,45 @@
+.pass-entry-form {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #f7f9fc;  /*#edf1f7fc;*/  
+}
+
+.upload-container {
+  border: 2px dashed #999;
+  padding: 80px;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+   background-color: #f7f9fc;  /*#edf1f7fc;*/
+}
+
+#csvUpload {
+  display: none;
+}
+
+.upload-button {
+  background-color: #007bff;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
+}
+
+.success-message {
+  color: green;
+  margin-top: 15px;
+}

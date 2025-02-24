@@ -1,0 +1,200 @@
+openapi: 3.0.0
+info:
+  title: Toll Management API
+  description: API for toll station management, user authentication, and analysis.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000
+
+paths:
+  /login:
+    post:
+      summary: User authentication
+      description: Authenticates a user and returns a JWT token.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '400':
+          description: Missing username or password
+        '401':
+          description: Invalid credentials
+
+  /healthcheck:
+    get:
+      summary: System health check
+      responses:
+        '200':
+          description: Returns database connection status and statistics
+        '500':
+          description: Database connection failed
+
+  /resetstations:
+    post:
+      summary: Reset toll stations
+      description: Clears and repopulates toll station data from CSV.
+      responses:
+        '200':
+          description: Reset successful
+        '400':
+          description: CSV file not found
+        '500':
+          description: Reset failed
+
+  /resetpasses:
+    post:
+      summary: Reset pass data
+      responses:
+        '200':
+          description: Pass data reset successful
+        '500':
+          description: Reset failed
+
+  /addpasses:
+    post:
+      summary: Upload new passes
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Passes added successfully
+        '400':
+          description: CSV file required
+        '500':
+          description: Error processing file
+
+  /tollStationPasses/{tollStationID}/{date_from}/{date_to}:
+    get:
+      summary: Get passes for a toll station
+      parameters:
+        - name: tollStationID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date_from
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date_to
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns list of passes
+        '500':
+          description: Query failed
+
+  /passAnalysis/{stationOpID}/{tagOpID}/{date_from}/{date_to}:
+    get:
+      summary: Analyze passes between operators
+      parameters:
+        - name: stationOpID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tagOpID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date_from
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date_to
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns pass analysis data
+        '500':
+          description: Query failed
+
+  /passesCost/{tollOpID}/{tagOpID}/{date_from}/{date_to}:
+    get:
+      summary: Get total cost of passes
+      parameters:
+        - name: tollOpID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tagOpID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date_from
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date_to
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns total pass cost
+        '500':
+          description: Query failed
+
+  /chargesBy/{tollOpID}/{date_from}/{date_to}:
+    get:
+      summary: Get operator charges
+      parameters:
+        - name: tollOpID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date_from
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date_to
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns visiting operator charges
+        '500':
+          description: Query failed

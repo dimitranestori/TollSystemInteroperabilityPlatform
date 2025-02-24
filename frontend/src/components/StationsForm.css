@@ -1,0 +1,53 @@
+.stations-form {
+    width: 25%; /* More compact width for the form */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 15px; /* Smaller padding */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stations-form h2 {
+    font-size: 1.2em; /* Smaller title font size */
+    color: #333;
+    text-align: center; /* Center the title */
+  }
+  
+  .stations-form label {
+    font-size: 0.8em; /* Smaller label font size */
+    margin-right: 10px;
+    color: #555;
+  }
+  
+  .stations-form input {
+    padding: 5px;
+    font-size: 0.9em; /* Smaller font size for inputs */
+    margin-bottom: 8px; /* Reduce space between inputs */
+    width: 80%; /* Make inputs more compact */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block; /* Align labels and inputs vertically */
+    margin-left: auto;
+    margin-right: auto; /* Center the inputs horizontally */
+  }
+  
+  .stations-form div {
+    margin-bottom: 8px; /* Less space between each form group */
+  }
+  
+  .stations-form .chart-container {
+    width: 100%; /* Make the chart container take full width within the form */
+    margin-top: 15px;
+    padding: 10px; /* Smaller padding */
+    text-align: center; /* Center the chart */
+    height: 250px; /* Reduced height for the chart container */
+  }
+  
+  canvas {
+    width: 100% !important;
+    max-width: 300px; /* Reduced chart width */
+    height: 150px !important; /* Reduced chart height */
+    margin: 0 auto; /* Center the chart */
+    display: block; /* Ensures chart is centered */
+  }
+  
